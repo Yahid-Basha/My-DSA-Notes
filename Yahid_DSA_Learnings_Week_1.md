@@ -1,9 +1,10 @@
 
 # 📘 Yahid’s DSA Daily Learnings — Week 1
 
----
+## Day 1
 
-## ✅ 1. **Boyer-Moore Voting Algorithm** — *Think Like a Fighter*
+
+### ✅ 1. **Boyer-Moore Voting Algorithm** — *Think Like a Fighter*
 
 ```java
 public int majorityElement(int[] nums) {
@@ -29,9 +30,9 @@ public int majorityElement(int[] nums) {
 - Different number → candidate loses ground (`-1`)
 - Count zero → reset candidate
 
----
 
-## ✅ 2. **Java HashMap Iteration**
+
+### ✅ 2. **Java HashMap Iteration**
 
 ```java
 Map<Integer, String> map = new HashMap<>();
@@ -54,9 +55,9 @@ for (Map.Entry<Integer, String> entry : map.entrySet()) {
 }
 ```
 
----
 
-## ✅ 3. **Java `Integer.valueOf()` — Not Cheating, Just Smart**
+
+### ✅ 3. **Java `Integer.valueOf()` — Not Cheating, Just Smart**
 
 ```java
 List<Integer> list = new ArrayList<>(Arrays.asList(1, 2, 3, 2));
@@ -75,7 +76,7 @@ list.remove(Integer.valueOf(2));
 
 ---
 
-## ✅ 4. **Java Substring — Slicing Strings**
+### ✅ 4. **Java Substring — Slicing Strings**
 
 ```java
 String str = "Yahid";
@@ -86,7 +87,7 @@ String part = str.substring(1, 4);  // "ahi"
 
 ---
 
-## ✅ 5. **Arrays.toString() — Print Arrays in Java**
+### ✅ 5. **Arrays.toString() — Print Arrays in Java**
 
 ```java
 int[] arr = {1, 2, 3};
@@ -95,7 +96,7 @@ System.out.println(Arrays.toString(arr)); // [1, 2, 3]
 
 ---
 
-## ✅ 6. **String to Character Array**
+### ✅ 6. **String to Character Array**
 
 ```java
 String str = "code";
@@ -104,7 +105,7 @@ char[] chars = str.toCharArray();  // ['c', 'o', 'd', 'e']
 
 ---
 
-## ✅ 7. **Sort Array in Java**
+### ✅ 7. **Sort Array in Java**
 
 ```java
 int[] arr = {3, 1, 4, 2};
