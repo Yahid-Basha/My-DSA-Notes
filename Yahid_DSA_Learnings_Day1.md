@@ -1,5 +1,5 @@
 
-# 📘 Yahid’s DSA Daily Learnings — Day 1
+# 📘 Yahid’s DSA Daily Learnings — Week 1
 
 ---
 
