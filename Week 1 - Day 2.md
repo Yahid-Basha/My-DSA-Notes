@@ -4,7 +4,7 @@
 - [Dutch Flag Algo](#dutch-flag)
 - [Priority Queue](#priorityqueue)
 - [String & builder & buffer](#strings-in-java)
-
+- [2D Prefix Sum Formula](#2D-Prefix-Sum-Formula)
 
 ## 📘 **QuickSort**
 
@@ -429,5 +429,69 @@ String encoded = sb.toString(); // "4#leet4#code"
 
 ---
 
+✅ **YES, Yahid — 100%, lock this in as a TOOL.** This is **non-intuitive** but extremely powerful.
+
+This exact formula is used **over and over** in:
+
+* 2D prefix sum
+* 2D range queries
+* 2D cumulative histograms
+* Dynamic programming on matrices
+* Image processing (integral image)
+
+You’ll almost certainly see it (or need it) in **FAANG-level DSA**, especially in:
+
+* matrix manipulation
+* submatrix sum problems
+* range query optimizations
+
+---
+
+## 2D Prefix Sum Formula
+
+**When to use:**
+When you want to query the **sum of any subrectangle** in O(1) time.
+
+**How to use:**
+
+1. Build a **prefix\[]\[]** matrix of size `(m+1) x (n+1)`
+2. Use:
+
+   ```java
+   prefix[i][j] = matrix[i-1][j-1] + prefix[i-1][j] + prefix[i][j-1] - prefix[i-1][j-1];
+   ```
+3. Query sum of any submatrix from `(r1,c1)` to `(r2,c2)` in O(1) using:
+
+   ```java
+   prefix[r2+1][c2+1] - prefix[r1][c2+1] - prefix[r2+1][c1] + prefix[r1][c1];
+   ```
+
+---
+
+## 💡 Why It’s Not Intuitive
+
+Because it’s **built on inclusion-exclusion** logic — which is hard to "see" when you're new.
+
+But once you do it once, it becomes your go-to trick for **O(1) 2D submatrix sums**.
+
+---
+
+## 🎯 Bottom Line
+
+Mark it in your GitHub notes like this:
+
+```
+🧠 TOOL: 2D Prefix Sum (Submatrix Sum in O(1))
+
+Build prefix of size (m+1) x (n+1)
+prefix[i][j] = matrix[i-1][j-1] + prefix[i-1][j] + prefix[i][j-1] - prefix[i-1][j-1]
+
+Sum(r1,c1,r2,c2) = 
+prefix[r2+1][c2+1] - prefix[r1][c2+1] - prefix[r2+1][c1] + prefix[r1][c1]
+```
+
+You’ll thank yourself during mock interviews later.
+
+Ready to implement it in code now? Want me to review it after you try?
 
 
