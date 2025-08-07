@@ -1,6 +1,11 @@
 # Day 2
 
-## 📘 **QuickSort Core Notes**
+[Quick Sort](#quicksort)
+[Dutch Flag Algo](#dutch-flag)
+[Priority Queue](#📒-priorityQueue-(Heap))
+
+
+## 📘 **QuickSort**
 
 ### 🔁 General QuickSort Template (Pseudocode)
 
@@ -157,7 +162,7 @@ You nailed **Quick Sort** and **Counting**, and now you’re reaching for a new 
 
 ---
 
-## 🧠 Thought Process Behind Dutch National Flag (DNF)
+## Dutch Flag
 
 ### Problem:
 
@@ -238,3 +243,126 @@ You'll see how the array **sorts itself** in one smooth pass.
 
 ---
 
+Perfect. Let’s fix that **once and for all.** No more “I suck at Java heap stuff” from today.
+
+Here’s a 🔥 **no-fluff, must-know Java Heap / PriorityQueue** cheatsheet — tuned for **LeetCode + interviews.**
+
+---
+
+## 📒 PriorityQueue (Heap)
+
+### 🧠 Basic Concept:
+
+* `PriorityQueue` is a **min-heap by default**
+* To build a **max-heap**, you use a custom comparator.
+
+---
+
+### ✅ 1. **Min-Heap (Default)** — Smallest comes first
+
+```java
+PriorityQueue<Integer> minHeap = new PriorityQueue<>();
+minHeap.add(5);
+minHeap.add(1);
+minHeap.add(3);
+
+while (!minHeap.isEmpty()) {
+    System.out.print(minHeap.poll() + " ");  // Output: 1 3 5
+}
+```
+
+---
+
+### ✅ 2. **Max-Heap** — Largest comes first
+
+```java
+PriorityQueue<Integer> maxHeap = new PriorityQueue<>(Collections.reverseOrder());
+maxHeap.add(5);
+maxHeap.add(1);
+maxHeap.add(3);
+
+// Output: 5 3 1
+```
+
+---
+
+### ✅ 3. **Heap of Custom Objects** (e.g., element with frequency)
+
+```java
+class Node {
+    int num;
+    int freq;
+
+    Node(int num, int freq) {
+        this.num = num;
+        this.freq = freq;
+    }
+}
+
+// Max-Heap: higher freq comes first
+PriorityQueue<Node> heap = new PriorityQueue<>((a, b) -> b.freq - a.freq);
+```
+
+🔁 For Min-Heap: use `a.freq - b.freq`
+
+---
+
+### ✅ 4. **Alternative: Heap with Map.Entry (no Node class needed)**
+
+```java
+Map<Integer, Integer> freqMap = new HashMap<>();
+for (int num : nums)
+    freqMap.put(num, freqMap.getOrDefault(num, 0) + 1);
+
+// Max-Heap of map entries
+PriorityQueue<Map.Entry<Integer, Integer>> heap =
+    new PriorityQueue<>((a, b) -> b.getValue() - a.getValue());
+heap.addAll(freqMap.entrySet());
+```
+
+---
+
+### 💡 Quick Tips:
+
+| 🔧 Problem Type                        | ✅ Use This Approach                          |
+| -------------------------------------- | -------------------------------------------- |
+| K smallest/largest elements            | Min-heap of size K or max-heap of N          |
+| Frequency-based (Top K frequent)       | Max-heap with map counts                     |
+| Real-time processing / streaming top K | Min-heap of size K (drop low priority)       |
+| Custom sorting                         | Use `PriorityQueue<>((a, b) -> customLogic)` |
+
+---
+
+### 🔁 Bonus – Reverse Order for Strings (lexicographic)
+
+```java
+PriorityQueue<String> maxHeap = new PriorityQueue<>(Collections.reverseOrder());
+```
+
+---
+
+## 🧪 Practice Drill
+
+> ❗ Practice using:
+>
+> * `PriorityQueue<Integer>`
+> * `PriorityQueue<Node>` with comparator
+> * `PriorityQueue<Map.Entry<K, V>>`
+
+Write small snippets to:
+
+* Push/pop
+* Sort by custom fields
+* Keep top K using size condition
+
+---
+
+## 🚀 Mission Now
+
+> 🔥 Code the Top-K Frequent Elements
+> Use **Map + Max-Heap**
+> (try both `Node` and `Map.Entry` styles)
+> And ask me to review — I’ll point out edge-case traps if any.
+
+You master this, **you never say "I suck at Java heap" again.**
+Let’s go.
