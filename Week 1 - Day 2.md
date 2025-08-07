@@ -491,7 +491,136 @@ prefix[r2+1][c2+1] - prefix[r1][c2+1] - prefix[r2+1][c1] + prefix[r1][c1]
 ```
 
 You’ll thank yourself during mock interviews later.
+Here's a full **interview-ready notes snippet** on **2D Prefix Sum** and **Region Sum Queries** – written like a reference guide you can paste into your GitHub notes or Notion. Use this to **revise fast** and **implement with confidence** in future problems.
 
-Ready to implement it in code now? Want me to review it after you try?
+---
+
+## 🧠 2D Prefix Sum — Quick Reference (Java)
+
+### ✅ Goal:
+
+Precompute cumulative sums so you can answer `sumRegion(r1, c1, r2, c2)` in **O(1)** time.
+
+---
+
+### 📦 Use Case:
+
+> Asked when you need **fast sum queries** in a 2D matrix
+> (especially **multiple queries** or **query in constant time**)
+
+---
+
+## 🧱 Constructor: Build Prefix Matrix
+
+```java
+int[][] prefix = new int[m + 1][n + 1]; // padded by +1 to avoid bounds check
+
+for (int i = 1; i <= m; i++) {
+    for (int j = 1; j <= n; j++) {
+        prefix[i][j] = matrix[i - 1][j - 1]
+                     + prefix[i - 1][j]
+                     + prefix[i][j - 1]
+                     - prefix[i - 1][j - 1];  // remove overlap
+    }
+}
+```
+
+> This builds a matrix where `prefix[i][j]` stores the sum of elements in the rectangle from `(0,0)` to `(i-1,j-1)`
+> (basically top-left block from origin)
+
+---
+
+## ❓ Query Formula: O(1) Region Sum
+
+```java
+public int sumRegion(int r1, int c1, int r2, int c2) {
+    return prefix[r2 + 1][c2 + 1]
+         - prefix[r1][c2 + 1]
+         - prefix[r2 + 1][c1]
+         + prefix[r1][c1]; // Add overlap back
+}
+```
+
+📌 Use this to get sum of submatrix from `(r1, c1)` to `(r2, c2)`
+
+---
+
+## 🧠 Why This Works — Visual Intuition:
+
+When you do:
+
+```
++ Total Area [0,0 -> r2,c2]
+- Top Strip [0,0 -> r1-1,c2]
+- Left Strip [0,0 -> r2,c1-1]
++ Overlap Area [0,0 -> r1-1,c1-1] added back
+```
+
+This is **classic inclusion-exclusion** applied in 2D.
+
+---
+
+## 🔧 Edge Padding Trick
+
+We use `prefix[m+1][n+1]` (i.e., extra row and column) to:
+
+* Avoid checking `i > 0` / `j > 0` everywhere
+* Clean up prefix sum logic
+
+This is a standard pattern — memorize it!
+
+---
+
+## 🔥 Sample Use Case
+
+```java
+NumMatrix obj = new NumMatrix(matrix);
+int result = obj.sumRegion(1, 1, 2, 2);
+```
+
+---
+
+## 💡 Pattern Recognition
+
+You should **instantly think of prefix sum** when:
+
+* Repeated queries ask for rectangle/row/column sums
+* Input matrix is static
+* Query requires O(1) or O(logn) time
+
+---
+
+## 📓 TL;DR Formula
+
+### Prefix Build:
+
+```java
+prefix[i][j] = matrix[i-1][j-1]
+             + prefix[i-1][j]
+             + prefix[i][j-1]
+             - prefix[i-1][j-1];
+```
+
+### Query:
+
+```java
+sum = prefix[r2+1][c2+1]
+    - prefix[r1][c2+1]
+    - prefix[r2+1][c1]
+    + prefix[r1][c1];
+```
+
+---
+
+### 🛠 Tools Unlocked:
+
+* ✅ 2D prefix sum (also called **integral image** in image processing)
+* ✅ Constant time submatrix queries
+* ✅ Inclusion-exclusion intuition
+
+---
+
+Want this exported as a `.md` file too? Just say the word.
+
 
 
