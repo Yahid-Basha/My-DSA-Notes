@@ -3,6 +3,7 @@
 - [Quick Sort](#quicksort)
 - [Dutch Flag Algo](#dutch-flag)
 - [Priority Queue](#priorityqueue)
+- [String & builder & buffer](#strings-in-java)
 
 
 ## 📘 **QuickSort**
@@ -356,13 +357,77 @@ Write small snippets to:
 * Keep top K using size condition
 
 ---
+Great timing, Yahid. String manipulation is **crucial in interviews**, and **Java’s immutability** makes picking the right tool important — both for **memory** and **speed**.
 
-## 🚀 Mission Now
+Let’s break it down cleanly and fast — this will be your go-to **Java string manipulation cheat sheet**.
 
-> 🔥 Code the Top-K Frequent Elements
-> Use **Map + Max-Heap**
-> (try both `Node` and `Map.Entry` styles)
-> And ask me to review — I’ll point out edge-case traps if any.
+---
+## Strings In Java
+## 🧱 1. `String` vs `StringBuilder` vs `StringBuffer`
 
-You master this, **you never say "I suck at Java heap" again.**
-Let’s go.
+| Feature         | `String`                  | `StringBuilder`                 | `StringBuffer`       |
+| --------------- | ------------------------- | ------------------------------- | -------------------- |
+| **Mutable**     | ❌ (Immutable)             | ✅                               | ✅                    |
+| **Thread-safe** | ❌                         | ❌                               | ✅ (synchronized)     |
+| **Speed**       | Slow (new object each op) | Fast (no sync overhead)         | Slower (due to sync) |
+| **Use When**    | Few changes, readability  | Many modifications (interview!) | Multithreaded envs   |
+
+✅ **In interviews: Always use `StringBuilder`** unless thread safety is a must (which it's not here).
+
+---
+
+## 🔨 2. Commonly Used Methods & Tricks
+
+### 🔤 `String` Methods
+
+* `.length()` – get length
+* `.charAt(i)` – get char at index `i`
+* `.substring(i, j)` – get substring from i (inclusive) to j (exclusive)
+* `.equals(str)` – check content equality
+* `.equalsIgnoreCase(str)` – case-insensitive check
+* `.startsWith()` / `.endsWith()` – obvious
+* `.indexOf(char)` – first occurrence
+* `.lastIndexOf(char)` – last occurrence
+* `.split(delimiter)` – splits into array
+* `.trim()` – remove surrounding whitespace
+* `.toCharArray()` – convert to array of chars
+* `.contains()` – check substring presence
+* `.replace(a, b)` – replace all a with b
+
+---
+
+### 🔧 `StringBuilder` Methods
+
+* `.append()` – add anything (char, int, string…)
+* `.toString()` – converts back to `String`
+* `.insert(index, str)` – insert at a position
+* `.delete(start, end)` – remove range (end exclusive)
+* `.setCharAt(i, ch)` – overwrite specific char
+* `.reverse()` – reverse entire string
+* `.length()` – same as string
+
+**Use `StringBuilder` when building complex or long strings in loops.**
+
+---
+
+### 🧷 Example: Efficient Encoding
+
+```java
+StringBuilder sb = new StringBuilder();
+sb.append("4#leet");
+sb.append("4#code");
+String encoded = sb.toString(); // "4#leet4#code"
+```
+
+---
+
+## 💡 Real Interview Tip
+
+* Always default to `StringBuilder` when building strings step by step.
+* Use `String` methods for parsing/extracting.
+* Don't use `String += ...` in loops — **that’s a common memory/time killer**.
+
+---
+
+
+
