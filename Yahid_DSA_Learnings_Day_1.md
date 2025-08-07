@@ -1,7 +1,5 @@
 
-# 📘 Yahid’s DSA Daily Learnings — Week 1
-
-## Day 1
+# 📘 Yahid’s DSA Daily Learnings — Day 1
 
 
 ### ✅ 1. **Boyer-Moore Voting Algorithm** — *Think Like a Fighter*
