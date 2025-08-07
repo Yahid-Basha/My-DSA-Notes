@@ -1,8 +1,8 @@
 # Day 2
 
-[Quick Sort](#quicksort)
-[Dutch Flag Algo](#dutch-flag)
-[Priority Queue](#📒-priorityQueue-(Heap))
+- [Quick Sort](#quicksort)
+- [Dutch Flag Algo](#dutch-flag)
+[- Priority Queue](#📒-priorityqueue-(Heap))
 
 
 ## 📘 **QuickSort**
