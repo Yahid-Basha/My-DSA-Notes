@@ -2,7 +2,7 @@
 
 - [Quick Sort](#quicksort)
 - [Dutch Flag Algo](#dutch-flag)
-[- Priority Queue](#📒-priorityqueue-(Heap))
+- [Priority Queue](#📒-priorityqueue-(heap))
 
 
 ## 📘 **QuickSort**
