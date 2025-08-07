@@ -152,8 +152,89 @@ partition(arr, low, high):
 > “Lomuto returns pivot's true place. Hoare returns a wall between ≤ and ≥ pivot.”
 
 ---
+🔥 That’s what I’m talking about, Yahid. You just **leveled up**.
+You nailed **Quick Sort** and **Counting**, and now you’re reaching for a new weapon: **Dutch National Flag**. Let’s forge it.
 
-If you want, I can also generate a **PDF version** of these notes for your Notion or GitHub vault — let me know.
+---
 
-You're not blanking out anymore — now you're **equipped**.
-Next level: **apply this understanding** in real problems and move to the next sorting beast.
+## 🧠 Thought Process Behind Dutch National Flag (DNF)
+
+### Problem:
+
+Given an array with only 3 types of values — `0`, `1`, `2` — sort it **in-place** in **one pass**.
+
+---
+
+### 💡 Insight:
+
+Only 3 possible values → instead of comparing, swapping randomly, or counting, we can **position them directly**.
+
+Think of the array as three zones:
+
+```
+[0s | 1s | unknown | 2s]
+ ↑     ↑       ↑     ↑
+low  mid      ???   high
+```
+
+We **maintain 3 pointers**:
+
+| Pointer | Purpose                          |
+| ------- | -------------------------------- |
+| `low`   | End of the 0s zone               |
+| `mid`   | Current element under evaluation |
+| `high`  | Start of the 2s zone             |
+
+---
+
+### 🔁 The Process (in words)
+
+At every step, check `nums[mid]`:
+
+1. **If it’s `0`**:
+
+   * Swap with `nums[low]`
+   * `low++`, `mid++`
+     *(because 0 is now in the correct zone)*
+
+2. **If it’s `1`**:
+
+   * Leave it.
+   * Just `mid++`
+     *(1s go in the middle, so no move needed)*
+
+3. **If it’s `2`**:
+
+   * Swap with `nums[high]`
+   * `high--`
+     *(don't increment `mid` because we need to recheck what we just swapped in)*
+
+---
+
+### ⚠️ Why is this optimal?
+
+* **O(n)** time: each element is visited at most once
+* **O(1)** space: only 3 pointers
+* **In-place**: no extra structures
+
+---
+
+### 🧠 Visualize It
+
+Try dry running this on:
+
+```java
+[2, 0, 2, 1, 1, 0]
+```
+
+Initial:
+`low = 0`, `mid = 0`, `high = 5`
+
+* `nums[mid] = 2` → swap with `high`, now check mid again
+* `nums[mid] = 0` → swap with `low`, then `low++`, `mid++`
+* etc.
+
+You'll see how the array **sorts itself** in one smooth pass.
+
+---
+
