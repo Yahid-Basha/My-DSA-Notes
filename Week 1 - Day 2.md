@@ -2,7 +2,7 @@
 
 - [Quick Sort](#quicksort)
 - [Dutch Flag Algo](#dutch-flag)
-- [Priority Queue](#📒-priorityqueue)
+- [Priority Queue](#priorityqueue)
 
 
 ## 📘 **QuickSort**
@@ -249,7 +249,7 @@ Here’s a 🔥 **no-fluff, must-know Java Heap / PriorityQueue** cheatsheet —
 
 ---
 
-## 📒 PriorityQueue
+## PriorityQueue
 
 ### 🧠 Basic Concept:
 
