@@ -102,7 +102,7 @@ Do you want me to include that?
 
 ---
 
-# Roatate
+# Rotate
 Next Given an integer array nums, rotate the array to the right by k steps, where k is non-negative.
 
 I have no idea how to do this except for brute force where you you do k%n and write logic to rotate once by storing last el in temp, and move every element one pos up and replace fist with temp
