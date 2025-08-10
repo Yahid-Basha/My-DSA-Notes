@@ -1,6 +1,10 @@
+- [Rotate Array](#Rotate)
+
+
 Here’s a clean set of **Java `long` notes** you can drop into your GitHub DSA notes:
 
 ---
+
 
 ## **Java `long` – Key Points for Competitive Programming / DSA**
 
