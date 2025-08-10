@@ -1,4 +1,4 @@
-- [Rotate Array](#Rotate)
+- [Rotate Array](#rotate)
 
 
 Here’s a clean set of **Java `long` notes** you can drop into your GitHub DSA notes:
@@ -100,8 +100,9 @@ if ((long) nums[i] + nums[j] > target) { ... }
 I can also make you a **quick overflow demo snippet** so you can keep in your repo as proof of why `long` is needed.
 Do you want me to include that?
 
+---
 
-## Roatate
+# Roatate
 Next Given an integer array nums, rotate the array to the right by k steps, where k is non-negative.
 
 I have no idea how to do this except for brute force where you you do k%n and write logic to rotate once by storing last el in temp, and move every element one pos up and replace fist with temp
