@@ -1,6 +1,7 @@
 - [Container with most water](#container-with-most-water)
 - [Minimum boats to save people](#boats-to-save-people)
 - [Trapping rain Water](#trapping-rain-water)
+- [Contains Duplicate II](#contains-duplicate-ii)
 
 ## Container with Most Water
 
@@ -279,6 +280,92 @@ class Solution {
 
 
 
+## Contains Duplicate II
+
+---
+
+## **Contains Duplicate II — Anti-Template Thinking**
+
+### **Key Trap I Fell Into**
+
+* I defaulted to the *classic sliding window* mental template:
+
+  * Maintain `l` and `r` pointers.
+  * Move both as window slides.
+* But here:
+
+  * The window size is **fixed** at `k`.
+  * We don’t need to *manually move* `l` in a while loop.
+  * `r` naturally moves in a for-loop.
+  * `l` can be *computed* as `i - k` when the window gets too big.
+
+This is a common mistake when overfitting “sliding window” from muscle memory rather than adapting to the problem’s constraints.
+
+---
+
+### **Why This Problem Is Different**
+
+* We are **only checking for duplicates in the last k elements**.
+* The “window” doesn’t have dynamic size — it’s capped at `k`.
+* So instead of:
+
+  ```java
+  while (windowTooBig) removeLeft();
+  ```
+
+  we do:
+
+  ```java
+  if (set.size() > k) set.remove(nums[i - k - 1]);
+  ```
+* This shifts the window automatically without manually moving `l`.
+
+---
+
+### **Correct Approach (Short)**
+
+1. Iterate `i` from `0` to `n-1`.
+2. Before adding `nums[i]`, check if it’s in the set → return `true` if yes.
+3. Add `nums[i]` to the set.
+4. If set size exceeds `k`, remove `nums[i - k]`.
+5. Finish loop → return `false`.
+
+---
+
+### **Mental Checklist to Avoid Template Trap**
+
+* Ask: **Is window size fixed or dynamic?**
+* If fixed → no need for while loop / manual pointer shifting.
+* If dynamic → use classic `while` shrink pattern.
+* Always adapt the skeleton to match constraints — **don’t let muscle memory write code before your brain has adapted the pattern**.
+
+---
+
+If you keep this mental switch in check, you won’t waste time fighting the wrong “pattern” in interviews again.
+
+---
+
+```Java
+class Solution {
+    public boolean containsNearbyDuplicate(int[] nums, int k) {
+        Set<Integer> set = new HashSet<>();
+        
+        for (int i = 0; i < nums.length; i++) {
+            if (set.contains(nums[i])) {
+                return true; // found duplicate within window
+            }
+            
+            set.add(nums[i]);
+            
+            if (set.size() > k) {
+                set.remove(nums[i - k]); // shrink from left
+            }
+        }
+        
+        return false;
+    }
+}
+```
 
 
 
