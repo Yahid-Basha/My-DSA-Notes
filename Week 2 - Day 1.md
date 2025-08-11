@@ -2,6 +2,7 @@
 - [Minimum boats to save people](#boats-to-save-people)
 - [Trapping rain Water](#trapping-rain-water)
 - [Contains Duplicate II](#contains-duplicate-ii)
+- [Help choose patter](#help)
 
 ## Container with Most Water
 
@@ -367,5 +368,48 @@ class Solution {
 }
 ```
 
+## Help
+Here’s your **micro flowchart** for deciding *fixed vs dynamic sliding window*:
 
+---
+
+**🧠 Sliding Window Pattern Detection**
+
+```
+Start
+ ↓
+Do I need to look at a range of elements?  
+ └─ No → Not a sliding window problem, stop.
+ ↓ Yes
+Is the window size fixed?  
+ ├─ Yes → "Fixed Window" pattern  
+ │     • Iterate with single for-loop  
+ │     • Use index math to remove oldest element when i > k  
+ │     • No while loop for shrinking
+ │
+ └─ No → "Dynamic Window" pattern  
+       • Use while loop to shrink until condition is met  
+       • l and r move independently  
+       • Condition usually depends on sum, count, or distinctness
+ ↓
+Implement with correct data structure (HashSet, HashMap, Deque, etc.)
+```
+
+---
+
+**🔥 Key Mental Shortcuts**
+
+* **Fixed** → `for` loop, remove `nums[i - k]` when needed.
+* **Dynamic** → `while` loop to shrink until valid.
+* Always **say out loud** in your head:
+
+  > “Am I maintaining a range of exactly `k` elements, or a range that changes with the data?”
+
+---
+
+If you burn this flow into your head, you'll shave **10–30 seconds** off every window problem — and more importantly, avoid wasting brainpower forcing the wrong skeleton.
+
+---
+
+**package these fixed/dynamic patterns** into one quick-reference snippet you can keep in my notes! That way I’ll always see the difference instantly.
 
