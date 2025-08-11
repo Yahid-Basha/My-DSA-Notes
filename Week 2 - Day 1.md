@@ -1,4 +1,6 @@
+- [Container with most water](#container-with-most-water)
 - [Minimum boats to save people](#boats-to-save-people)
+- [Trapping rain Water](#trapping-rain-water)
 
 ## Container with Most Water
 
@@ -183,6 +185,97 @@ class Solution {
 ```
 
 
+## Trapping Rain Water
+
+Given n non-negative integers representing an elevation map where the width of each bar is 1, compute how much water it can trap after raining.
+
+[image](https://assets.leetcode.com/uploads/2018/10/22/rainwatertrap.png)
+
+Here’s your **GitHub-ready notes** for **Trapping Rain Water**:
+
+---
+
+## Trapping Rain Water – Two Pointer Approach
+
+**Intuition:**
+Water trapped at each index depends on the *tallest bar to its left* and the *tallest bar to its right*. The water level is `min(maxLeft, maxRight) - height[i]` if that’s positive.
+Instead of precomputing two arrays (O(n) extra space), we can use **two pointers** and keep track of `lmax` and `rmax` on the fly, saving space.
+
+---
+
+### Approach (Two Pointers, O(1) space, O(n) time)
+
+1. **Initialize**:
+
+   * `l` = 0, `r` = n-1 (start and end pointers)
+   * `lmax = height[l]`, `rmax = height[r]`
+   * `water = 0`
+
+2. **While l <= r**:
+
+   * Update `lmax` and `rmax` with current heights.
+   * If `lmax < rmax`:
+
+     * Water trapped at `l` = `lmax - height[l]`
+     * Move `l` rightwards.
+   * Else:
+
+     * Water trapped at `r` = `rmax - height[r]`
+     * Move `r` leftwards.
+
+3. **Why it works**:
+
+   * The smaller of `lmax` and `rmax` is the limiting height for trapping water.
+   * By moving the pointer with the smaller bound, we ensure any trapped water is correctly calculated without missing taller bars on the other side.
+
+---
+
+### Example Dry Run
+
+**Input:** `[0,1,0,2,1,0,1,3,2,1,2,1]`
+
+| l   | r   | lmax | rmax | Water Added | Total Water |
+| --- | --- | ---- | ---- | ----------- | ----------- |
+| 0   | 11  | 0    | 1    | 0           | 0           |
+| 1   | 11  | 1    | 1    | 0           | 0           |
+| 2   | 11  | 1    | 1    | 1           | 1           |
+| 3   | 11  | 2    | 1    | 0           | 1           |
+| ... | ... | ...  | ...  | ...         | ...         |
+| End |     |      |      |             | **6**       |
+
+**Output:** `6`
+
+---
+
+#### Code
+
+```Java
+class Solution {
+    public int trap(int[] height) {
+        int l = 0;
+        int r = height.length-1;
+        int lmax = height[l];
+        int rmax = height[r];
+        int water = 0;
+        while(l <= r){
+            if(height[l] > lmax ){
+                lmax = height[l];
+            }
+            if(height[r] > rmax){
+                rmax = height[r];
+            }
+            if(lmax < rmax){
+                water += (lmax - height[l]);
+                l++;
+            }else{
+                water += (rmax - height[r]);
+                r--;
+            }
+        }
+        return water;
+    }
+}
+```
 
 
 
